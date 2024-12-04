@@ -20,7 +20,17 @@ def resolver_subasta():
         B = int(request.form['precio_minimo'])
         metodo = request.form['metodo']
         ofertas_raw = request.form['ofertas']
-        ofertas = [tuple(map(int, oferta.split(','))) for oferta in ofertas_raw.split('\n')]
+        # Limpieza y validación de las ofertas
+        ofertas = []
+        for oferta in ofertas_raw.split('\n'):
+            oferta = oferta.strip()  # Quitar espacios extra
+            if oferta:  # Ignorar líneas vacías
+                try:
+                    ofertas.append(tuple(map(int, oferta.split(','))))
+                except ValueError:
+                    return f"Formato inválido en la oferta: {oferta}", 400
+
+        #ofertas = [tuple(map(int, oferta.split(','))) for oferta in ofertas_raw.split('\n')]
         if metodo == 'fuerza_bruta':
             ganancia, solucion = subastasFuerzaBruta(A, B, ofertas)
         elif metodo == 'dinamico':
