@@ -1,6 +1,6 @@
 import timeit
 import random
-from Punto2 import subastasFuerzaBruta,subastas_dinamico,subastas_voraz
+from proyecto.Punto2 import subastasFuerzaBruta,subastas_dinamico,subastas_voraz
 
 def generar_datos_subasta(num_ofertas, max_acciones=1000, max_precio=500, max_minimo=300, max_maximo=600):
     """
@@ -31,30 +31,31 @@ def generar_datos_subasta(num_ofertas, max_acciones=1000, max_precio=500, max_mi
     return A, B, ofertas
 
 
-def medir_funciones(longitud_palabra):
-    cadena1 = generar_palabra_aleatoria(longitud_palabra)
-    cadena2 = generar_palabra_aleatoria(longitud_palabra)
-    #5 repeticiones para cada funcion a medir
+def medir_tiempos_subasta(A, B, ofertas):
+    # Tiempo para la solución de fuerza bruta
     tiempo_fuerza_bruta = timeit.timeit(
-        stmt=lambda: terminal_fuerzaBruta(cadena1, cadena2),
-        number=5
+        stmt=lambda: subastasFuerzaBruta(A, B, ofertas),
+        number=3
     )
-    
-    tiempo_dinamica = timeit.timeit(
-        stmt=lambda: terminal_dinamica(cadena1, cadena2),
-        number=5
+
+    # Tiempo para la solución dinámica
+    tiempo_dinamico = timeit.timeit(
+        stmt=lambda: subastas_dinamico(A, B, ofertas),
+        number=3
     )
-    
+
+    # Tiempo para la solución voraz
     tiempo_voraz = timeit.timeit(
-        stmt=lambda: terminal_voraz(cadena1, cadena2),
-        number=5
+        stmt=lambda: subastas_voraz(ofertas, A, B),
+        number=3
     )
-    
-    # Muestra los resultados
-    print(f"Para palabras de longitud {longitud_palabra}:")
+
+    # Mostrar los resultados de tiempo para cada función
+    print(f"Para A = {A}, B = {B}, con {len(ofertas)} ofertas:")
     print(f"  Fuerza Bruta: {tiempo_fuerza_bruta:.6f} segundos")
-    print(f"  Programación Dinámica: {tiempo_dinamica:.6f} segundos")
+    print(f"  Programación Dinámica: {tiempo_dinamico:.6f} segundos")
     print(f"  Algoritmo Voraz: {tiempo_voraz:.6f} segundos\n")
+
 
 
 if __name__ == "__main__":
