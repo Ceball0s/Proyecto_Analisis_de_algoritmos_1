@@ -70,11 +70,11 @@ class Terminal:
 
             # Seleccionar la opción con el costo mínimo
             min_costo, min_pasos = min(
+                (avanzar,["advance"] + paso_avance),
+                (costo_reemplazar, ["replace " + cadena1[i] + " with " + cadena2[j]] + paso_reemplazar),
                 (costo_insertar, ["insert " + cadena2[j]] + paso_insertar),
                 (costo_eliminar, ["delete " + cadena1[i]] + paso_eliminar),
-                (costo_reemplazar, ["replace " + cadena1[i] + " with " + cadena2[j]] + paso_reemplazar),
                 (costo_kill_op, ["kill"] + paso_kill_op),
-                (avanzar,["advance"] + paso_avance),
                 key=lambda x: x[0]
             )
 
