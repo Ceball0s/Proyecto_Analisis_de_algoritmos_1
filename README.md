@@ -5,6 +5,43 @@ Este proyecto aborda la resolución de problemas complejos utilizando tres enfoq
 
 ---
 
+## Problemas a Resolver
+
+### 1. La Terminal Inteligente
+**Descripción**:  
+Una terminal inteligente tiene la capacidad de transformar una cadena de caracteres en otra utilizando cinco operaciones: avanzar, borrar, reemplazar, insertar y eliminar. Cada operación tiene un costo asociado.  
+
+**Objetivo**:  
+Transformar una cadena inicial en una cadena objetivo utilizando la secuencia de operaciones de menor costo.  
+
+**Operaciones**:
+- **advance**: Mueve el cursor un carácter a la derecha.
+- **delete**: Borra el carácter bajo el cursor y mueve el cursor al siguiente carácter.
+- **replace**: Reemplaza el carácter bajo el cursor por otro y mueve el cursor una posición a la derecha.
+- **insert**: Inserta un nuevo carácter antes del carácter que está bajo el cursor. El cursor se mantiene en su posición.
+- **kill**: Borra los caracteres desde el que está bajo el cursor, incluyéndolo, hasta el final de la línea.
+
+---
+
+### 2. El Problema de la Subasta Pública
+**Descripción**:  
+El gobierno subasta un total de **A** acciones a un precio mínimo de **B**. Cada oferente indica:
+1. El precio que está dispuesto a pagar por acción.
+2. El número mínimo de acciones que desea comprar.
+3. El número máximo que podría comprar.  
+
+El gobierno también ofrece comprar las acciones sobrantes a un precio **B**.  
+
+**Objetivo**:  
+Asignar las acciones a los oferentes de manera que se maximice el valor recibido por la asignación.  
+
+**Parámetros**:
+- **A**: Total de acciones a subastar.
+- **B**: Precio mínimo por acción.
+- **Ofertas**: Lista de tripletas `<precio, mínimo, máximo>` indicando las ofertas de los participantes.
+
+---
+
 ## Características Principales
 
 ### Transformación de Cadenas (Terminal)
@@ -16,6 +53,7 @@ Este proyecto aborda la resolución de problemas complejos utilizando tres enfoq
 - **Fuerza Bruta**: Explora todas las combinaciones posibles para encontrar la solución óptima.
 - **Programación Dinámica**: Utiliza una matriz para almacenar los costos mínimos de asignación de acciones.
 - **Algoritmo Voraz**: Ordena las ofertas por precio y asigna acciones de manera óptima en cada paso.
+
 
 ---
 
@@ -30,14 +68,14 @@ Se ha desarrollado una interfaz web utilizando **Flask** que permite a los usuar
 ## Ejecución del Proyecto
 
 ### Iniciar el Servidor
-'''bash
+```bash
 python Main.py
-'''
+```
 
 ### Ejecutar Pruebas de Rendimiento
-'''bash
+```bash
 python Main.py --test
-'''
+```
 
 ---
 
